@@ -1,3 +1,11 @@
+<?php
+session_start(); 
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +31,12 @@
                 </button>
                 <button id="btn-theme" class="btn btn-outline-light btn-sm">
                     Mode Gelap
-                </button>
+                </button> 
+                <?php if (isset($_SESSION['username'])): ?>
+                    <a href="controller/logout.php" class="btn btn-danger">Logout</a>
+                <?php else: ?>
+                    <a href="login.php" class="btn btn-warning">Login</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
